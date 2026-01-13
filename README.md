@@ -37,6 +37,3 @@ Este projeto segue os princípios da **Clean Architecture** e utiliza:
 * `network`: Configuração do Retrofit e `ApiService`.
 * `repositories`: Camada de abstração de dados (Auth, Product, Cart, Order).
 * `ui`: Componentes e ecrãs organizados por *feature* (login, products, cart).
-* `di`: Módulos de injeção de dependência (Hilt).
-
----
