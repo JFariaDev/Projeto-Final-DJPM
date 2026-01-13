@@ -44,13 +44,11 @@ class OrderRepository @Inject constructor(
                 .await()
 
             snapshot.documents.mapNotNull { document ->
-                // safer handling: treat items as List<*> and item/product as Map<*, *>
                 val itemsRaw = document.get("items") as? List<*> ?: emptyList<Any>()
                 val cartItems = itemsRaw.mapNotNull { itemAny ->
                     val itemMap = itemAny as? Map<*, *> ?: return@mapNotNull null
                     val productMap = itemMap["product"] as? Map<*, *> ?: return@mapNotNull null
 
-                    // parse quantity safely
                     val quantity = when (val q = itemMap["quantity"]) {
                         is Number -> q.toInt()
                         is String -> q.toIntOrNull() ?: 0
